@@ -9,11 +9,21 @@ public class Conectar {
     public static String usuario;
     public static String password;
     public static boolean status = false;
+    public static String ipcon;
 
+    public static String getIpcon() {
+        return ipcon;
+    }
+
+    public static void setIpcon(String ipcon) {
+        Conectar.ipcon = ipcon;
+    }
+    
+    
     public static Connection getConexion() {
         status = false;
-
-        String url = "jdbc:sqlserver://192.168.100.5:1433;databaseName=VentaDeRopa";
+        
+        String url = "jdbc:sqlserver://"+Conectar.getIpcon()+":1433;databaseName=SERVICIO_CORTE";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         } catch (ClassNotFoundException e) {
@@ -23,7 +33,7 @@ public class Conectar {
         try {
             con = DriverManager.getConnection(url, Conectar.usuario, Conectar.password);
             status = true;
-            JOptionPane.showMessageDialog(null, "conexion Exitosa");
+            //JOptionPane.showMessageDialog(null, "conexion Exitosa");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "error " + e);
         }

@@ -16,10 +16,22 @@ public class vistaAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,11 +43,14 @@ public class vistaAdmin extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_new_store_30px_2.png"))); // NOI18N
-        jMenu3.setText("Categorias");
+        jMenuBar2.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Model.png"))); // NOI18N
+        jMenu3.setText("Modelos");
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu3MouseClicked(evt);
@@ -48,8 +63,29 @@ public class vistaAdmin extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu3);
 
-        jMenu4.setText("Edit");
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/job.png"))); // NOI18N
+        jMenu4.setText("Trabajador");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
         jMenuBar2.add(jMenu4);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Dising.png"))); // NOI18N
+        jMenu5.setText("Diseño");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu5);
+
+        jMenu6.setText("jMenu6");
+        jMenuBar2.add(jMenu6);
+
+        jMenu7.setText("jMenu7");
+        jMenuBar2.add(jMenu7);
 
         setJMenuBar(jMenuBar2);
 
@@ -72,11 +108,23 @@ public class vistaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-       ventana1 v1 = new ventana1();
+       view_Modelo v1 = new view_Modelo();
           escritorio.add(v1);
         v1.setVisible(true);
         
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+       view_Trabajadores v2t = new view_Trabajadores();
+       escritorio.add(v2t);
+       v2t.setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        view_Diseño vdi = new view_Diseño();
+        escritorio.add(vdi);
+        vdi.setVisible(true);
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,7 +137,7 @@ public class vistaAdmin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -114,9 +162,15 @@ public class vistaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
+    public javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables
 }
