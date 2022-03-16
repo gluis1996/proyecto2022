@@ -12,48 +12,34 @@ public class view_Modelo extends javax.swing.JInternalFrame {
     int cont;
     vistaAdmin va;
     CargarDatos cd = new CargarDatos();
+    String valorCombo;
 
     public view_Modelo() {
         initComponents();
         va  = new vistaAdmin();
+        
+        cd.consultarRoles(cbxDiseño, "select CodDiseño+'-'+nombreDi  as nombre_diseño from diseño", "nombre_diseño");
     }
 
-    /* void mostrardatos(){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0);
-        rs = Conexion.Conectar.consulta("SELECT Idcategoria,CategoriName,FechaDeRegistro FROM Categorias");
-        try {
-            while (rs.next()) {                
-            Vector vc = new Vector();
-            vc.add(rs.getInt(1));
-            vc.add(rs.getString(2));
-            vc.add(rs.getString(3));
-            modelo.addRow(vc);
-            jTable1.setModel(modelo);    
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro en los datos");
-        }
-        }*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtnombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtcategoria = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtmodelo = new javax.swing.JTextField();
+        BTN_Agregar_ = new javax.swing.JButton();
+        BTN_Mostrar_ = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxDiseño = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        BTM_Limpiar_ = new javax.swing.JButton();
+        BTN_Update_ = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -64,35 +50,27 @@ public class view_Modelo extends javax.swing.JInternalFrame {
 
         jLabel2.setText("NOMBRE MODELO :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 110, 20));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 170, -1));
-
-        jButton3.setText("DISEÑO NEW");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 170, -1));
 
         jLabel1.setText("CODIGO MODEL :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 100, 20));
-        jPanel1.add(txtcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 90, -1));
+        jPanel1.add(txtmodelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 90, -1));
 
-        jButton1.setText("AGREGAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BTN_Agregar_.setText("AGREGAR");
+        BTN_Agregar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BTN_Agregar_ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 100, -1));
+        jPanel1.add(BTN_Agregar_, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 100, -1));
 
-        jButton2.setText("MOSTRAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BTN_Mostrar_.setText("MOSTRAR");
+        BTN_Mostrar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BTN_Mostrar_ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 100, -1));
+        jPanel1.add(BTN_Mostrar_, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 100, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,8 +101,12 @@ public class view_Modelo extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 720, 230));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 170, -1));
+        cbxDiseño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxDiseñoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbxDiseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 170, -1));
 
         jLabel3.setText("DESCRIPCION :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 80, -1));
@@ -132,12 +114,18 @@ public class view_Modelo extends javax.swing.JInternalFrame {
         jLabel4.setText("DISEÑO :");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtDescripcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 390, -1));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 390, -1));
+
+        BTM_Limpiar_.setText("LIMPIAR");
+        jPanel1.add(BTM_Limpiar_, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 100, -1));
+
+        BTN_Update_.setText("UPDATE");
+        jPanel1.add(BTN_Update_, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,20 +141,20 @@ public class view_Modelo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BTN_Mostrar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Mostrar_ActionPerformed
         
         cd.MostrarModelo(jTable1);
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BTN_Mostrar_ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (txtcategoria.getText().isEmpty()) {
+    private void BTN_Agregar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Agregar_ActionPerformed
+        if (txtmodelo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese sus datos corrctamente");
-            txtcategoria.setText("");
-            txtcategoria.requestFocus();
+            txtmodelo.setText("");
+            txtmodelo.requestFocus();
         } else {
             try {
-                rs = Conexion.Conectar.consulta("SELECT COUNT(CategoriName) FROM Categorias WHERE CategoriName = '" + txtcategoria.getText() + "'");
+                rs = Conexion.Conectar.consulta("select COUNT(CodModel) from modelo where CodModel = '" + txtmodelo.getText() + "'");
                 try {
                     while (rs.next()) {
                         cont = rs.getInt(1);
@@ -176,10 +164,9 @@ public class view_Modelo extends javax.swing.JInternalFrame {
                 if (cont >= 1) {
                     JOptionPane.showMessageDialog(null, "este elemento ya existe");
                 } else {
-                    Procedimientos.sp_InsertModelo(txtcategoria.getText());
-                    //mostrardatos();
-                    txtcategoria.setText("");
-                    txtcategoria.requestFocus();
+                    Procedimientos.sp_InsertModelo(txtmodelo.getText(), txtnombre.getText(), valorCombo, txtDescripcion.getText());
+                    cd.MostrarModelo(jTable1);
+                    limpiar();
                 }
 
             } catch (SQLException e) {
@@ -187,24 +174,33 @@ public class view_Modelo extends javax.swing.JInternalFrame {
             }
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BTN_Agregar_ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        view_Diseño vd = new view_Diseño();
-        va.escritorio.add(vd);
-        vd.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
+    private void cbxDiseñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDiseñoActionPerformed
+       String linea = cbxDiseño.getSelectedItem().toString();
+       String cadena [] = linea.split("-");
+       valorCombo = cadena[0];
+        System.out.println(valorCombo);
 
+    }//GEN-LAST:event_cbxDiseñoActionPerformed
+
+void limpiar(){
+txtmodelo.setText("");
+txtnombre.setText("");
+cbxDiseño.setSelectedIndex(0);
+txtDescripcion.setText("");
+txtmodelo.requestFocus();
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton BTM_Limpiar_;
+    private javax.swing.JButton BTN_Agregar_;
+    private javax.swing.JButton BTN_Mostrar_;
+    private javax.swing.JButton BTN_Update_;
+    private javax.swing.JComboBox<String> cbxDiseño;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -212,8 +208,8 @@ public class view_Modelo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtcategoria;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtmodelo;
+    private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }

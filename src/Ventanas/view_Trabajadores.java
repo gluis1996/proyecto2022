@@ -52,6 +52,7 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
         RBactivo = new javax.swing.JRadioButton();
         RBinactivo = new javax.swing.JRadioButton();
         RBretirado = new javax.swing.JRadioButton();
+        BUTON_LIMPIAR = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -158,6 +159,14 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
         RBretirado.setText("Retirado");
         jPanel1.add(RBretirado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
 
+        BUTON_LIMPIAR.setText("LIMPIAR");
+        BUTON_LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTON_LIMPIARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BUTON_LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 90, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
 
         pack();
@@ -168,19 +177,31 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BTNMOSTRARActionPerformed
 
     private void BTN_INSENTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_INSENTARActionPerformed
-        /*String nombre = txtnombre.getText();
-        String pass = txtpassword.getText();
-        int rol = combo1.getSelectedIndex();
+        String dni = txtdni.getText();
+        String nombre = txtnombre.getText();
+        String apellido = txtapellido.getText();
+        String edad = txtedad.getText();
+        String ciudad = txtciudad.getText();
+        String correo = txtcorreo.getText();
+        String estado = null;
+        
+        if (RBactivo.isSelected()){
+            estado = "Activo";
+        }else if (RBinactivo.isSelected()){
+            estado = "Inactivo";
+        }else if (RBretirado.isSelected()){
+            estado = "Retirado";
+        }
       
         
         if (txtnombre.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Verfique sus datos bien coño");
-            txtnombre.setText("");
-            txtnombre.requestFocus();
+            txtdni.setText("");
+            txtdni.requestFocus();
         }else {
             
         try {
-            rs = Conexion.Conectar.consulta("select COUNT(usuario) from Trabajadores where usuario = '"+txtnombre.getText()+"'");
+            rs = Conexion.Conectar.consulta("select COUNT(Dni) from trabajador where Dni = '"+txtdni.getText()+"'");
             try {
                 while (rs.next()){
                     con = rs.getInt(1);
@@ -190,10 +211,10 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
             if (con >= 1){
                 JOptionPane.showMessageDialog(null, "El Usuario Existe");
             }else {
-                Procedimientos.sp_InsertJob(nombre,pass,rol);
-                cargardatos();
-                txtnombre.setText("");
-                txtnombre.requestFocus();
+                Procedimientos.sp_InsertJob(dni, nombre, apellido, edad, ciudad, correo, estado);
+                cd.MostrarTrabajador(jTable2);
+                 limpiar ();
+                txtdni.requestFocus();
             }
             
         } catch (SQLException e) {
@@ -201,9 +222,6 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
         }
         
         }
-        
-         */
-
     }//GEN-LAST:event_BTN_INSENTARActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -229,46 +247,62 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
 
-        try {
-            int fila = jTable2.getSelectedRow();
-            String id = (String) jTable2.getValueAt(fila, 0);
-            String nombre = (String) jTable2.getValueAt(fila, 1);
-            String apellido = (String) jTable2.getValueAt(fila, 2);
-            String edad = (String) jTable2.getValueAt(fila, 3);
-            String ciudad = (String) jTable2.getValueAt(fila, 5);
-            String correo = (String) jTable2.getValueAt(fila, 4);
-            Connection con = Conexion.Conectar.getConexion();
-            PreparedStatement ps;
-            ps = con.prepareStatement("SELECT Dni,nombreTra,Apellidos,Edad,Correo,Cuidad,Estado  FROM trabajador where Dni = ?");
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                txtdni.setText(String.valueOf(id));
-                txtnombre.setText(String.valueOf(nombre));
-                txtapellido.setText(String.valueOf(apellido));
-                txtedad.setText(String.valueOf(edad));
-                txtciudad.setText(String.valueOf(ciudad));
-                txtcorreo.setText(String.valueOf(correo));
-                if (rs.getString("Estado").equals("Activo")) {
-                    RBactivo.setSelected(true);
-                } else if (rs.getString("Estado").equals("Inactivo")) {
-                    RBinactivo.setSelected(true);
-                } else if (rs.getString("Estado").equals("Retirado")) {
-                    RBretirado.setSelected(true);
-                } else {
-                    RBactivo.setSelected(false);
-                    RBinactivo.setSelected(false);
-                    RBretirado.setSelected(false);
-                }
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en mostrar datos \n" + ex);
-        }
+       
+       
+       if(jTable2.getSelectedRow()>=0){
+           try {
+               DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+               String codigo = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),0));
+               String nombre = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),1));
+               String apeliido = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),2));
+               String edad = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),3));
+               String ciudad = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),4));
+               String correo = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(),5));
+               String estado = String.valueOf(modelo.getValueAt(jTable2.getSelectedRow(), 6));
+               
+               txtdni.setText(codigo);
+               txtnombre.setText(nombre);
+               txtapellido.setText(apeliido);
+               txtedad.setText(edad);
+               txtciudad.setText(ciudad);
+               txtcorreo.setText(correo);
+               switch (estado) {
+                   case "Activo":
+                       RBactivo.setSelected(true);
+                       break;
+                   case "Inactivo":
+                       RBinactivo.setSelected(true);
+                       break;
+                   case "Retirado":
+                       RBretirado.setSelected(true);
+                       break;
+                   default: RBactivo.setSelected(false);
+                       break;
+               }
+               
+           } catch (Exception e) {
+           }
+       }else{
+       JOptionPane.showMessageDialog(null, "Error en el Jtable");
+       }
 
 
     }//GEN-LAST:event_jTable2MouseClicked
+void limpiar (){
+ txtdni.setText("");
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txtedad.setText("");
+        txtciudad.setText("");
+        txtcorreo.setText("");
+        RBactivo.setSelected(false);
+        RBinactivo.setSelected(false);
+        RBretirado.setSelected(false);
+}
+    private void BUTON_LIMPIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTON_LIMPIARActionPerformed
+        limpiar ();
+
+    }//GEN-LAST:event_BUTON_LIMPIARActionPerformed
     void consultarRoles(JComboBox combo) {
         try {
             Conexion.Conectar.getConexion();
@@ -288,6 +322,7 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNMOSTRAR;
     private javax.swing.JButton BTN_INSENTAR;
+    private javax.swing.JButton BUTON_LIMPIAR;
     private javax.swing.JRadioButton RBactivo;
     private javax.swing.JRadioButton RBinactivo;
     private javax.swing.JRadioButton RBretirado;

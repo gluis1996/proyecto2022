@@ -226,28 +226,29 @@ public class view_Diseño extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        try {
-            int fila = jTable1.getSelectedRow();
-            String id = (String) jTable1.getValueAt(fila, 0);
-            String nombre = (String) jTable1.getValueAt(fila,1);
-            Connection con = Conexion.Conectar.getConexion();
-            PreparedStatement ps;
-            ps = con.prepareStatement("select CodDiseño,nombreDi,CodApli,Fecha_Registro,Estado from diseño where CodDiseño= ?");
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                txtcod.setText(String.valueOf(id));
-                txtnombre.setText(String.valueOf(nombre));
-                jComboBox1.setSelectedItem("CodApli");
-                if (rs.getString("Estado").equals("1")) {
-                    RbActivo.setSelected(true);
-                } else if (rs.getString("Estado").equals("0")) {
-                    RbDesactivo.setSelected(true);
-                }
+               
+        if (jTable1.getSelectedRow()>=0){
+            try {
+                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            String codigo = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),0));
+            String nombre = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),1));
+            String tipoApli = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),2));
+            String Estado = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),4));
+             
+            
+            txtcod.setText(codigo);
+            txtnombre.setText(nombre);
+            
+            if(Estado.equals("1")){
+                RbActivo.setSelected(true);
+            }else if (Estado.equals("0")){
+                RbDesactivo.setSelected(true);
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en cargar los datos");
+            } catch (Exception e) {
+            }
+     
+        }else {
+            JOptionPane.showMessageDialog(null, "Error en el Jtable");
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
