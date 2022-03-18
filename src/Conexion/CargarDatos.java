@@ -10,9 +10,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class CargarDatos {
     ResultSet rs;
-  
+    
+    
     public void MostrarModelo(JTable jTable1){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo ;        
+        String cabecera []={"id","nombre","Fecha Registro","Nombre Diseño","asasas"};
+        String data [][]={};        
+        modelo = new DefaultTableModel(data, cabecera);
+        jTable1.setModel(modelo);  
         modelo.setRowCount(0);
         rs = Conexion.Conectar.consulta("{call sp_mostrarmodelo}"); 
         try {
@@ -33,7 +38,7 @@ public class CargarDatos {
         }
     
     public void mostrardatosDiseño(JTable jTable1){
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel() ;
         modelo.setRowCount(0);
         rs = Conexion.Conectar.consulta("{call sp_MostrarDiseño}");
         try {
@@ -71,8 +76,33 @@ public class CargarDatos {
                 modelo.addRow(vc);
                 jTable1.setModel(modelo);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro en los datos");
         }
+    }
+    
+    public void MostrarRegistroCorte(JTable jtabla){
+        DefaultTableModel modelo = (DefaultTableModel) jtabla.getModel();
+        
+        
+        modelo.setRowCount(0);
+        rs = Conexion.Conectar.consulta("{call sp_MostrarDiseño}");
+        
+        try {
+            while (rs.next()) {
+                Vector vc = new Vector();
+                vc.add(rs.getString(1));
+                vc.add(rs.getString(2));
+                vc.add(rs.getString(3));
+                vc.add(rs.getString(4));
+                modelo.addRow(vc);
+                jtabla.setModel(modelo);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro en los datos");
+        }
+        
+        
     }
     
      public void consultarRoles (JComboBox combo, String conulta,String columna){

@@ -1,5 +1,7 @@
 package Ventanas;
 
+import javax.swing.JButton;
+
 
 public class vistaAdmin extends javax.swing.JFrame {
 
@@ -56,11 +58,6 @@ public class vistaAdmin extends javax.swing.JFrame {
                 jMenu3MouseClicked(evt);
             }
         });
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
-            }
-        });
         jMenuBar2.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/job.png"))); // NOI18N
@@ -82,6 +79,11 @@ public class vistaAdmin extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         jMenu6.setText("jMenu6");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar2.add(jMenu6);
 
         jMenu7.setText("jMenu7");
@@ -103,13 +105,9 @@ public class vistaAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-          
-    }//GEN-LAST:event_jMenu3ActionPerformed
-
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
        view_Modelo v1 = new view_Modelo();
-          escritorio.add(v1);
+        escritorio.add(v1);
         v1.setVisible(true);
         
     }//GEN-LAST:event_jMenu3MouseClicked
@@ -126,6 +124,13 @@ public class vistaAdmin extends javax.swing.JFrame {
         vdi.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
 
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        view_servicio vse = new view_servicio();
+        escritorio.add(vse);
+        vse.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+   
     /**
      * @param args the command line arguments
      */
@@ -162,7 +167,7 @@ public class vistaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

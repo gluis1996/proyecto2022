@@ -10,13 +10,11 @@ public class view_Modelo extends javax.swing.JInternalFrame {
 
     ResultSet rs;
     int cont;
-    vistaAdmin va;
     CargarDatos cd = new CargarDatos();
     String valorCombo;
 
     public view_Modelo() {
         initComponents();
-        va  = new vistaAdmin();
         
         cd.consultarRoles(cbxDiseño, "select CodDiseño+'-'+nombreDi  as nombre_diseño from diseño", "nombre_diseño");
     }
@@ -142,7 +140,6 @@ public class view_Modelo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTN_Mostrar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Mostrar_ActionPerformed
-        
         cd.MostrarModelo(jTable1);
 
     }//GEN-LAST:event_BTN_Mostrar_ActionPerformed
