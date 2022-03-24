@@ -32,7 +32,7 @@ public class view_Diseño extends javax.swing.JInternalFrame {
         model.addColumn("TIPO APLI");
         model.addColumn("FECHA REGIST");
         model.addColumn("ESTADO");
-       jTable1.setModel(model);
+        jTable1.setModel(model);
         sorter = new TableRowSorter<>(model);
         jTable1.setRowSorter(sorter);
     }
@@ -158,6 +158,11 @@ public class view_Diseño extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 100, -1));
 
+        txtbusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscaActionPerformed(evt);
+            }
+        });
         txtbusca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbuscaKeyReleased(evt);
@@ -281,6 +286,10 @@ public class view_Diseño extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_txtbuscaKeyReleased
+
+    private void txtbuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

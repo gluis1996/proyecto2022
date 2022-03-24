@@ -23,11 +23,11 @@ public class vistaAdmin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -50,6 +50,14 @@ public class vistaAdmin extends javax.swing.JFrame {
 
         jMenuBar2.setBackground(new java.awt.Color(0, 0, 0));
         jMenuBar2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jMenu7.setText("Servicios");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu7);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Model.png"))); // NOI18N
         jMenu3.setText("Modelos");
@@ -85,9 +93,6 @@ public class vistaAdmin extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(jMenu6);
-
-        jMenu7.setText("jMenu7");
-        jMenuBar2.add(jMenu7);
 
         setJMenuBar(jMenuBar2);
 
@@ -125,10 +130,16 @@ public class vistaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        view_corte vc = new view_corte();
+        escritorio.add(vc);
+        vc.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
         view_servicio vse = new view_servicio();
         escritorio.add(vse);
         vse.setVisible(true);
-    }//GEN-LAST:event_jMenu6MouseClicked
+    }//GEN-LAST:event_jMenu7MouseClicked
 
    
     /**
