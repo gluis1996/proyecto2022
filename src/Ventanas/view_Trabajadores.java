@@ -246,9 +246,6 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-
-       
-       
        if(jTable2.getSelectedRow()>=0){
            try {
                DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
@@ -285,8 +282,6 @@ public class view_Trabajadores extends javax.swing.JInternalFrame {
        }else{
        JOptionPane.showMessageDialog(null, "Error en el Jtable");
        }
-
-
     }//GEN-LAST:event_jTable2MouseClicked
 void limpiar (){
  txtdni.setText("");

@@ -17,13 +17,13 @@ public class view_Diseño extends javax.swing.JInternalFrame {
     CargarDatos cd = new CargarDatos();
     ResultSet rs;
     int con;
-    String ins;
+    String valorCombo;
     ButtonGroup btr;
     DefaultTableModel model=new DefaultTableModel (); 
     TableRowSorter<DefaultTableModel> sorter;
     public view_Diseño() {
         initComponents();
-        cd.consultarRoles(jComboBox1, "select CodApli+'-'+nombreApli as codnom from tipo_aplicacion ", "codnom");
+        cd.consultarRoles(jComboBox1, "SELECT CodApli as nom FROM tipo_aplicacion", "nom");
         btr = new ButtonGroup();
         btr.add(RbActivo);
         btr.add(RbDesactivo);
@@ -212,7 +212,7 @@ public class view_Diseño extends javax.swing.JInternalFrame {
                 if (con >= 1) {
                     JOptionPane.showMessageDialog(null, "El Diseño Existe");
                 } else {
-                    Procedimientos.sp_InsertDiseño(cod, nom, ins);
+                    Procedimientos.sp_InsertDiseño(cod, nom, valorCombo);
                     cd.mostrardatosDiseño(jTable1);
                     txtcod.setText("");
                     txtcod.requestFocus();
@@ -227,14 +227,16 @@ public class view_Diseño extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String linea = jComboBox1.getSelectedItem().toString();
         String[] cadena = linea.split("-");
-        ins = cadena[0];        
+        valorCombo = cadena[0];   
+        System.out.println("diseñooo ------>"+valorCombo);
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
                
         if (jTable1.getSelectedRow()>=0){
             try {
-                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
             String codigo = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),0));
             String nombre = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),1));
             String tipoApli = String.valueOf(modelo.getValueAt(jTable1.getSelectedRow(),2));

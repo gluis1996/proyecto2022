@@ -45,7 +45,7 @@ public class vistaAdmin extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
 
         jMenuBar2.setBackground(new java.awt.Color(0, 0, 0));
@@ -59,7 +59,6 @@ public class vistaAdmin extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu7);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Model.png"))); // NOI18N
         jMenu3.setText("Modelos");
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -68,7 +67,6 @@ public class vistaAdmin extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/job.png"))); // NOI18N
         jMenu4.setText("Trabajador");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -77,7 +75,6 @@ public class vistaAdmin extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu4);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Dising.png"))); // NOI18N
         jMenu5.setText("Diseño");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

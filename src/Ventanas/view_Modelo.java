@@ -146,7 +146,7 @@ public class view_Modelo extends javax.swing.JInternalFrame {
 
     private void BTN_Agregar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Agregar_ActionPerformed
         if (txtmodelo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese sus datos corrctamente");
+            JOptionPane.showMessageDialog(null,"Ingrese sus datos corrctamente");
             txtmodelo.setText("");
             txtmodelo.requestFocus();
         } else {
